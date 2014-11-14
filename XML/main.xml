@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-Stylesheet type="text/xsl" href="final.xsl"?>
+<staff>
+  <product>
+     <name>Nokia</name>
+     <price>1000</price>
+  </product>
+  <product>
+     <name>Motorola</name>
+     <price>10000</price>
+  </product>
+</staff>

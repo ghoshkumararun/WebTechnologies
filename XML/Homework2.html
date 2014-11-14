@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> 
+		Plant Catalog 
+		</title>
+		<script> 
+			function validate(a)
+			{
+				var x = a.url.value;
+				if (x == null || x == "")
+				{
+					alert("URL must be filled out");
+					return;
+				}
+				if (window.XMLHttpRequest)
+				{
+					xmlhttp=new XMLHttpRequest();
+				}
+				else
+				{
+					xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				xmlhttp.open("GET",x,false);
+				try
+				{
+					xmlhttp.send();
+				}
+				catch(e)
+				{
+					alert("File not found");
+				}
+				if(xmlhttp.status == 404) 
+				{
+				
+					alert("File not found");
+					return false;
+				}
+				xmlDoc=xmlhttp.responseXML;
+				if(xmlDoc.documentElement.nodeName == 'parsererror')
+				{
+					alert("Error in XML file");
+					return false;
+				}
+				if(xmlDoc != null)
+				{
+					newWin = window.open("","","width = 1000px, height = 1000px,scrollbars = 1");
+					str = "";
+					str += "<html>";
+					str += "<body>";
+					str += "<center>";
+					str += "<table border='1'>";
+					str += "<tr><th>COMMON</th><th>BOTANICAL</th><th>ZONE</th><th>LIGHT</th><th>PRICE</th><th>IMAGE</th>";
+					x = xmlDoc.getElementsByTagName("PLANT");
+					if( x.length==0)
+					{
+						alert("No PLANT entry found");
+						return false;
+					}
+					for (i=0;i<x.length;i++)
+					{
+						str += "<tr><td><span>";
+						try
+						{
+							str += x[i].getElementsByTagName("COMMON")[0].childNodes[0].nodeValue;
+						}
+						catch (e)
+						{
+							str += "NA";
+						}
+						str += "</span></td>";
+						str += "<td><span>";
+						try
+						{
+							str += x[i].getElementsByTagName("BOTANICAL")[0].childNodes[0].nodeValue;
+						}
+						catch (e)
+						{
+							str += "NA";
+						}
+						str += "</span></td>";
+						str += "<td><span>";
+						try
+						{
+							str += x[i].getElementsByTagName("ZONE")[0].childNodes[0].nodeValue;
+						}
+						catch (e)
+						{
+							str += "NA";
+						}	
+						str += "</span></td>";
+						str += "<td><span>";	
+						try
+						{
+							str += x[i].getElementsByTagName("LIGHT")[0].childNodes[0].nodeValue;
+						}
+						catch (e)
+						{
+							str += "NA";
+						}
+						str += "</span></td>";
+						str += "<td><span>";
+						try
+						{
+							str += x[i].getElementsByTagName("PRICE")[0].childNodes[0].nodeValue;
+						}
+						catch (e)
+						{
+							str += "NA";
+						}
+						str += "</span></td>";
+						str += "<td><span>";
+						try
+						{
+							var val= "this.src = '"+ "http://www-scf.usc.edu/~csci571/2014Spring/hw4/"+x[i].getElementsByTagName("IMAGE")[0].childNodes[0].nodeValue+"';";
+							str+="<img src='"+x[i].getElementsByTagName("IMAGE")[0].childNodes[0].nodeValue+"' width='160' height='160' onerror =\""+val+"\" >";
+						}
+						catch (e)
+						{
+							str += "NA";
+						}						
+						str += "</span></td></tr>";
+					}
+						str += "</table>";
+						str += "</center>";
+						str += "</bo"+"dy>";
+					}
+					else
+					{
+						alert("Data not present");
+						return false;
+					}
+					str += "</html>";
+					newWin.document.write(str);
+					return true;
+				}
+		</script>
+	</head>
+	<body>
+		<br>
+			<br>
+				<br>
+						<form name="FormValidate" >
+							<center>
+								Enter URL for Plant Catalog XML file 
+								<br>
+								<br>
+								<input type="text" name="url"/>
+								<br>
+								<br>
+								<input type="button" value="Submit Query" onClick="validate(this.form)"/>
+							</center>	
+						</form>
+				</center>	
+		<noscript>			
+	</body>
+</html>

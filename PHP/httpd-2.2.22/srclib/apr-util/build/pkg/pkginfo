@@ -1,0 +1,11 @@
+PKG="ASFapu-1"
+NAME="apr-util"
+ARCH="sparc"
+VERSION="1.4.1"
+CATEGORY="application"
+VENDOR="Apache Software Foundation"
+EMAIL="dev@apr.apache.org"
+PSTAMP="dev@apr.apache.org"
+BASEDIR="/home/scf-34/sakhalka/PHP/httpd-2.2.22"
+CLASSES="none"
+

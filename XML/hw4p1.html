@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Page Title</title>
+    <script type="text/javascript">
+    var xmlDoc; 
+    function loadXML() {
+        var url = document.getElementById("xmlurl").value;
+        if (url=='') {
+            alert("URL not entered. Please Enter a URL");
+            return false;
+        }
+        else {
+            if (window.XMLHttpRequest) {
+                xmlhttp=new XMLHttpRequest();
+            }
+            else 
+            { 
+                 xmlhttp=new ActiveXObject("Microsoft.XMLHTTP"); 
+            } 
+            xmlhttp.open("GET",url,false);
+            xmlhttp.send(); 
+            xmlDoc=xmlhttp.responseXML;
+            if (xmlDoc.documentElement.nodeName=='parsererror') {
+                alert("Error in XML file");
+                return false;
+            }
+            x = xmlDoc.getElementsByTagName("PLANT");
+            if(x.length==0) {
+                alert("No PLANT entry found");
+                return false;
+            }
+            document.write("<table border='1'>");
+            var x=xmlDoc.getElementsByTagName("PLANT");
+			newWin = windows.open();
+            document.write("<tr><th>COMMON</th><th>BOTANICAL</th><th>ZONE</th><th>LIGHT</th><th>PRICE</th><th>IMAGE</th>")
+            for (i=0;i<x.length;i++)
+            { 
+                newWin.document.write("<tr><td>");
+                newWin.document.write(x[i].getElementsByTagName("COMMON")[0].childNodes[0].nodeValue);
+                newWin.document.write("</td><td>");
+                newWin.document.write(x[i].getElementsByTagName("BOTANICAL")[0].childNodes[0].nodeValue);
+                newWin.document.write("</td><td>");
+                newWin.document.write(x[i].getElementsByTagName("ZONE")[0].childNodes[0].nodeValue);
+                newWin.document.write("</td><td>");
+                newWin.document.write(x[i].getElementsByTagName("LIGHT")[0].childNodes[0].nodeValue);
+                newWin.document.write("</td><td>");
+                newWin.document.write(x[i].getElementsByTagName("PRICE")[0].childNodes[0].nodeValue);
+                newWin.document.write("</td><td>");
+                var y = "<img src="+xmlDoc.getElementsByTagName("IMAGE")[i].childNodes[0].nodeValue+" height=\"160\" width=\"160\"></img>";
+                newWin.document.write(y);
+                newWin.document.write("</td></tr>");
+            }
+            document.write("</table>");
+            return true;
+        }
+    }
+    </script> 
+
+</head>
+
+<body>
+    <div align="center">
+        <form onsubmit="loadXML()">
+            Enter URL for Plant Catalog XML File <br><br>
+            <input type="text" name="xmlurl" id="xmlurl"> <br><br>
+            <input type="submit" value="Submit Query" id="submit">
+        </form>
+    </div>
+    <NOSCRIPT>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> 
+			Market Stock Search
+		</title>
+		<script> 
+			function validate(a)
+			{
+				var x = a.url.value;
+				if (x == null || x == "")
+				{
+					alert("Please enter a company symbol");
+					return;
+				}
+			}	
+		</script>
+	</head>	
+	<body>
+		<br>
+		  <br>
+		     <br>
+			   <form name="FormValidate" action="search_stock.php" method="post">
+				 <center>
+					Company Symbol
+					   <input type="text" name="url"/>
+					   <input type="submit" name= "submit" value="Search" onClick="validate(this.form)"/>
+					   <br>Example: <i>GOOG, MSFT, YHOO, FB, APPL, ..etc
+				</center>	
+			  </form>
+		<noscript>			
+	</body>
+</html>

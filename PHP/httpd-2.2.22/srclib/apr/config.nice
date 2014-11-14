@@ -1,0 +1,16 @@
+#! /bin/sh
+#
+# Created by configure
+
+"/home/scf-34/sakhalka/PHP/httpd-2.2.22/srclib/apr/configure" \
+"--disable-option-checking" \
+"--cache-file=/dev/null" \
+"--srcdir=/home/scf-34/sakhalka/PHP/httpd-2.2.22/srclib/apr" \
+"--prefix=/home/scf-34/sakhalka/PHP/httpd-2.2.22" \
+"--exec-prefix=/home/scf-34/sakhalka/PHP/httpd-2.2.22" \
+"--libdir=/home/scf-34/sakhalka/PHP/httpd-2.2.22/lib" \
+"--includedir=/home/scf-34/sakhalka/PHP/httpd-2.2.22/include" \
+"--bindir=/home/scf-34/sakhalka/PHP/httpd-2.2.22/bin" \
+"--datadir=/home/scf-34/sakhalka/PHP/httpd-2.2.22" \
+"--with-installbuilddir=/home/scf-34/sakhalka/PHP/httpd-2.2.22/build" \
+"$@"

@@ -1,0 +1,72 @@
+<html>
+	<head>
+		<script> 
+			function validate(a)
+			{
+				var x = a.url.value;
+				alert(x + "1");
+				if (x == null || x == "")
+				{
+					  alert("URL must be filled out");
+					  return;
+				}
+				if (window.XMLHttpRequest)
+				{
+					xmlhttp=new XMLHttpRequest();
+				}
+				else
+				{
+				  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				if(x=="books.xml")
+				{
+					try
+					{
+						xmlhttp.open("GET",x,false);
+					}
+					catch(e) {alert(e);}
+					alert("Opened");
+					try
+					{
+						xmlhttp.send();
+					}
+					catch(e){ alert(e); }
+					xmlDoc=xmlhttp.responseText;
+					if(xmlDoc != null)
+					{
+						alert(xmlhttp.readyState + " URL Exists " + xmlhttp.status + " " + xmlDoc);
+						document.write("<table border='1'>");
+						//var x=xmlDoc.getElementsByTagName("PLANT");
+						//for (i=0;i<x.length;i++)
+						x=xmlDoc.getElementByTagName("book");
+						
+						//document.write(x[0].childNode[0].nodeValue);
+						document.write("<br>");
+						 
+					}
+					else
+					{
+						alert("Does not exists");
+					}
+				}
+				else
+				{
+					alert("Wrong file");
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<br>
+		<br>
+		Enter URL for Plant Catalog XML file 
+		<br>
+		<br>
+			<form name="FormValidate" >
+				<input type="text" name="url"/>
+				<br>
+				<br>
+				<input type="button" value="Submit Query" onClick="validate(this.form)"/>
+			</form>
+	</body>
+</html>
